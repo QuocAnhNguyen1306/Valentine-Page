@@ -35,22 +35,76 @@
         button:hover {
             background-color: #cc0000;
         }
-        .img{
-            width: 30%;
-            height: 40%;
+        .heart {
+            position: absolute;
+            bottom: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: floatUp 5s infinite ease-in;
+        }
+        .heart:before, .heart:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: inherit;
+            border-radius: 50%;
+        }
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+        .heart:after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+        @keyframes changeColor {
+            0% { background-color: red; }
+            10% { background-color: blue; }
+            20% { background-color: green; }
+            30% { background-color: pink; }
+            40% { background-color: yellow; }
+            50% { background-color: lightpink; }
+            60% { background-color: lightgreen; }
+            70% { background-color: orange; }
+            80% { background-color: purple; }
+            90% { background-color: lightcoral; }
+            100% { background-color: burlywood; }
+        }
+        .heart {
+            animation: floatUp 5s infinite ease-in, changeColor 3s infinite alternate;
         }
     </style>
 </head>
 <body>
-    <h1>Chúc mừng Valentine, Minh Anh!</h1>
-    <p>Bạn là người một người bạn đặc biệt mà tui quen. Chúc bạn luôn vui vẻ và hạnh phúc với gia đình</p>
-    <button onclick="showSurprise()">Bấm vào đây nè!</button>
+    <h1>Một mùa Valentine vui vẻ nhe</h1>
+    <p>Chúc bạn luôn vui vẻ, xinh đẹp và hạnh phúc </p>
+    <button onclick="createHeart()">Bấm vào đây nè!</button>
     
     <script>
-        function showSurprise() {
-            alert("Một mùa valentine vui vẻ nhe. Mong mọi điều tốt đẹp sẽ đến với m và gia đình. (^v^)");
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
         }
     </script>
-    <img class="img" src="meme-meo-4.jpg" alt="JUNO_OKYO" />
+    <img src="download (1).png" alt="ảnh meme">
 </body>
 </html>
